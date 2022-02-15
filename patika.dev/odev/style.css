@@ -1,0 +1,19 @@
+body {
+  font-size: 15pt;
+  background-color: black;
+  color: green;
+  margin-top: 20%;
+  
+}
+
+.rightBox{
+  float:right;
+  width:60%; 
+  text-align: center; 
+}
+
+.leftBox{
+  float:left;
+  width:40%;
+  text-align: right; 
+}
