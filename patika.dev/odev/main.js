@@ -7,8 +7,8 @@ function clickedBtn (){
   userInfo.innerHTML = userName
   
   let d = new Date()
-  let dateoptions = { day:'2-digit',month:'2-digit',year:'numeric', weekday:'long', hour:'numeric',minute:'numeric'}
+  let dateoptions = { day:'2-digit',month:'2-digit',year:'numeric', weekday:'long', hour:'numeric',minute:'numeric', second:'numeric'}
   
    date.innerHTML = d.toLocaleDateString("tr-TR",dateoptions)
-  
+   setInterval(clickedBtn, 1000); 
 }
