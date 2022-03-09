@@ -1,5 +1,3 @@
-const menuButtons = document.getElementById('menuButtons');
-const singleItem = document.getElementById('singleItem');
 
 const menu = [
     {
@@ -84,6 +82,8 @@ const menu = [
       desc: `Red bean paste dessert, serving with honey.`,
     },
 ];
+const menuButtons = document.getElementById('menuButtons');
+const singleItem = document.getElementById('singleItem');
 
 const categories = menu.reduce((values,item) =>{
     if (!values.includes(item.category)) {
