@@ -82,42 +82,39 @@ const menu = [
       desc: `Red bean paste dessert, serving with honey.`,
     },
 ];
-const menuButtons = document.getElementById('menuButtons');
-const singleItem = document.getElementById('singleItem');
+const menuButtons = document.getElementById('menuButtons'); // Butonlarımın olduğu div
+const singleItem = document.getElementById('singleItem'); // Menu'nün olduğu div
 
-const categories = menu.reduce((values,item) =>{
-    if (!values.includes(item.category)) {
-        values.push(item.category)
-    } 
-    return values;        
+const categories = menu.reduce((values,item) =>{    // Boş bir dizin oluştup bunun içini reduce metodu ile dolduracağız iki parametre ekledim birisi sonda oluşturduğumuz dizi yi temsil ediyor, diğeri menu dizisinin elemanlarını
+    if (!values.includes(item.category)) {          // eğerki oluşturduğumuz boş dizinin içinde item.category yoksa ->
+        values.push(item.category)                  // boş dizinin içine item.category'i atıyuoruz
+    }                                               // 
+    return values;                                  // içi dolan diziyi categories'e döndürüyoruz
+},['All']);                                         // -- Boş Dizi --                
 
-},['All']);
-
-const categoryList = () =>{
-    const categoriBtn = categories.map(category =>{
+const categoryList = () =>{                         // bir fonksiyon oluşturdum ve yapacağım tüm işlmeleri bu fonksiyona attım
+    const categoriBtn = categories.map(category =>{ // categoriBtn diye bir değişken oluturup içine map metdou ile her categori elemanını html taglerine ekledim
         return `<button class="btn btn-outline-dark btn-item categoryBtn " id=${category}>${category}</button>`
     }).join("");
 
-    menuButtons.innerHTML = categoriBtn;
-    DOM_categoryBtn = document.querySelectorAll('.categoryBtn');
-    DOM_categoryBtn.forEach(element =>{
+    menuButtons.innerHTML = categoriBtn;            // menu butonlarının bulunduğu div'e yukarda oluşturduğum categori butonlarını ekler
+    DOM_categoryBtn = document.querySelectorAll('.categoryBtn');  // categoryBtn class'ına sahip bütün html elemanlarını DOM_categoryBtn'a aktarır
+    DOM_categoryBtn.forEach(element =>{             // Bütün butonları döngüye sokar ve her butonu ayrı elemana alır
 
-        element.addEventListener('click', (btn) => {
-           
-            btnName = btn.target.id;
-            if (btnName == btn.target.id ){
-               const newMenu = menu.filter(e =>{
-                   if(btnName == 'All'){
-                    singleItem.innerHTML = "";
-                    return menu
-                   }
-                   singleItem.innerHTML = "";
-                    return e.category == btnName
+        element.addEventListener('click', (btn) => { // mevcut elemana tıkladığında -->
+            btnName = btn.target.id;                 // o elamanın id bilgisini btnName'e aktarır yani koreye tıklandığında korea olur Japan'a tıklandığında Japan olur ...
+            if (btnName){                            // eğer btnName içinde herhangi bir değer varsa, yani butona tıklandıysa -->
+               const newMenu = menu.filter(e =>{     // bütün menüyü fitrele -->
+                   if(btnName == 'All'){             // Eğer tıklanan butonun adı 'All' ise -->
+                    singleItem.innerHTML = "";          // önce menü listesini boşalt
+                    return e.category                   // sonra menu elmanlarının içinde tüm kategorileri newMenuye aktar
+                   }                                // Eğer ''All' değilse
+                   singleItem.innerHTML = "";            // önce menü listesini boşalt
+                    return e.category == btnName         // sonra bütün kategorilerin içinde categori adı tıklanan butonun adı ile aynı olan butonları newMenuye aktar
                 }) 
                 
-
-                newMenu.forEach(item => {
-                    DOM_List = `<div class="menu-items col-lg-6 col-sm-12">
+                newMenu.forEach(item => {               // Yukarda oluşturduğumuz newMenu değişkeninin içindeki tüm elemanları döngüye sokuyoruz
+                    DOM_List = `<div class="menu-items col-lg-6 col-sm-12"> 
                     <img
                       src=${item.img}
                       alt=${item.title}
@@ -132,11 +129,11 @@ const categoryList = () =>{
                         ${item.desc}
                       </div>
                     </div>
-                  </div>`
-                    singleItem.innerHTML += DOM_List;
+                  </div>`                                   // DOM_List adında bir değişken oluşturup içine bir html elemmanı atıyoruz. Bu HTML elemanın içini newMenu içindeki elemanlara göre ayarlıyoruz
+                    singleItem.innerHTML += DOM_List;       // Daha sonra sayfa içindeki menünün bulunduğu dive aktarıyoruz
                 }) 
             }
         })  
     })
 }
-categoryList()
+categoryList();                                             /// Çalıştır
