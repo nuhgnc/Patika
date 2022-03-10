@@ -36,6 +36,13 @@ h2 {
   border: 0.25rem solid black;
   border-radius: 10px;
 }
+.photo:hover {
+  width: 30%;
+  height: 175px;
+  object-fit: cover;
+  border: 0.25rem solid black;
+  border-radius: 20px;
+}
 .menu-items {
   display: flex;
   margin: 20px 0;
